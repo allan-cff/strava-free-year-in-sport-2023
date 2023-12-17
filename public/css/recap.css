@@ -1,0 +1,117 @@
+.profil {
+    height:10vh;
+    display:flex;
+    flex-direction: row;
+    border-bottom : solid black 3px;
+}
+
+.pp-strava {
+    height:6vh;
+    width : 6vh;
+    border-radius: 100px;
+    padding:6px;
+    border: solid 2px #FC5200;
+    margin: auto 0 auto 5vw;
+}
+
+.nom-prenom {
+    margin : auto 0 auto 5vw;
+    font-size: 40px;
+}
+
+.nom {
+    margin-top:15px;
+}
+
+.prenom{
+    margin-bottom:15px;
+}
+
+.stats{
+    height:59vh;;
+}
+
+.stats section {
+    height:33.33333333%;
+    border-bottom : solid black 3px;
+
+}
+
+.jours-top {
+    display:flex;
+}
+
+.jours-actifs {
+    width:60vw;
+    background-color: #FFB4EE;
+    border-right:solid 3px black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-sport {
+    width:40vw;
+    background-color: #002E51;
+    color:white;
+    display:flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+
+.top-sport svg {
+    width:17vw;
+    height : 17vw;
+    padding-left:5vw;
+    margin-top:1vh;
+    fill : white;
+    
+}
+
+.denivele {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FC5200;
+    position:relative;
+}
+
+.montagne-haute{
+    position:absolute;
+    bottom:-1px;
+    right:93px;
+    width:273px;
+}
+
+.stats .distance-heures {
+    height:430px;
+}
+
+.distance-heures {
+    display:flex;
+    flex-direction: row;
+    background-color: #C0CA53;
+    position:relative;
+    justify-content: space-between;
+}
+
+.distance {
+    display:flex;
+    flex-direction: column;
+    padding-top : 3vh;
+}
+
+.heures {
+    z-index:10;
+    padding-top : 3vh;
+    margin-right: 5vh;
+    color:white;
+}
+
+.montagne-basse{
+    position:absolute;
+    z-index:1;
+    bottom:-2px;
+    right:0;
+    height:calc(100% + 2px);
+}

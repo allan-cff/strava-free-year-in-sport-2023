@@ -1,0 +1,142 @@
+@font-face {
+    font-family: Karla;
+
+    src: url("/Karla/Karla-VariableFont_wght.ttf");
+
+}
+
+body {
+    margin:0;
+    font-family: Karla;
+    max-height:100vh;
+    height:100vh;
+    background-color: rgb(0, 0, 0);
+}
+
+main {
+    background-color:#F4F3EB;
+    height:75.5vh;
+}
+
+header {
+    background-color:black;
+    height:5vh;
+    display :flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color:white;
+    padding: 0 5vw 2vh 5vw;
+    
+}
+
+header img {
+    width:25%;
+}
+
+header p {
+    margin:0;
+    font-size:38px;
+}
+
+
+
+footer {
+    height:9vh;
+    display:flex;
+    position:relative;
+    justify-content:space-between;
+    background-color:black;
+    color:white;
+    width:100vw;
+    margin-bottom : 0;
+    z-index:1000;
+    border-bottom : 3px solid white;
+    border-top : 3px solid white;
+}
+
+.fleche {
+    width:17%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fleche img {
+    height:4vh;
+}
+
+.fleche-gauche {
+    border-right:3px solid white;
+}
+
+.fleche-droite {
+    border-left:3px solid white;
+}
+
+.pagination {
+    align-self: center;
+    font-size:44px;
+}
+
+.titre{
+    height:4vh;
+    background-color:#F4F3EB;
+    margin:0;
+    border-bottom : 3px solid black;
+    border-top : 3px solid black;
+    padding: 1vh 0 1vh 5vw;
+    position:relative;
+    z-index:100;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+h2 {
+    padding-left:5vw;
+    font-weight:400;
+    font-size : 30px;
+}
+
+.nombre-xxl {
+    padding-left:5vw;
+    font-size : 200px;
+    margin:0;
+}
+
+.nombre-xl {
+    padding-left:5vw;
+    font-size : 160px;
+    margin:0;
+}
+
+.nombre-md {
+    padding-left:5vw;
+    font-size : 120px;
+    margin:0;
+}
+
+.nombre-sm{
+    font-size:60px;
+    margin:0;
+}
+
+.bulle {
+    height:60vh;
+    width:60vh;
+    text-align: center;
+    background-color: #FC5200;
+    padding : 0;
+    position: absolute;
+    border-radius:40vh;
+    display : flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    z-index:10;
+    top: 10vh;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
