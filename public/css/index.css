@@ -1,0 +1,134 @@
+body {
+    background-image: url("../images/YiS23-Redirect-Hero-Mobile.jpg");
+    background-position : bottom;
+    background-repeat:no-repeat;
+    height: 100vh;
+    overflow:hidden;
+}
+
+main {
+    height: 89vh;
+    background-color: transparent;
+}
+
+#profil {
+    margin-left : 10vw;
+    display:none;
+}
+
+#profil-picture {
+    transform :rotate(-5deg);
+    height: 20vw;
+    width : 20vw;
+}
+
+.logo {
+    margin : 2vh 0;
+}
+
+.presentation {
+    overflow:hidden;
+    position:relative;
+    width:100%;
+    text-align: center;
+    padding : 0;
+    display : flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    z-index:10;
+    
+}
+
+.presentation p {
+    font-size:35px;
+}
+
+progress {
+    background-color: #c14000;
+    color: #ffff;
+    border: 0;
+    border-radius:25vw;
+    height: 10px;
+    width: 50vw;
+    transition : width 0.4s ease;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #c14000;
+    border: 0;
+    border-radius: 25vw;
+    height: 10px;
+    width: 50vw;
+}
+
+progress::-webkit-progress-value {
+    background-color: #ffff !important;
+    transition : width 0.4s ease;
+    border: 0;
+    height: 4px;
+    border-radius: 25vw;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    max-width: calc(50vw - 6px);
+}
+
+progress::-moz-progress-bar {
+    background-color: #ffff !important;
+    transition : width 0.4s ease;
+    border: 0;
+    height: 4px;
+    border-radius: 25vw;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    max-width: calc(50vw - 6px);
+}
+
+.ready a {
+    background-color: #1E2C43;
+    color: #ffff;
+    text-decoration: none;
+    padding: 0.5em 5vw;
+    border: none;
+    border-radius: 1vw;
+    font-size: 35px;
+    font-family: 'Karla';
+}
+
+.reload a {
+    background-color: #b50000;
+    color: #ffff;
+    text-decoration: none;
+    padding: 0.5em 5vw;
+    border: none;
+    border-radius: 1vw;
+    font-size: 35px;
+    font-family: 'Karla';
+}
+
+.reload {
+    margin-top: 5vh;
+}
+
+.ready p {
+    margin : 0.5em;
+}
+
+#decouvrez {
+    margin-bottom : 3vh;
+}
+
+.ready {
+    transition : opacity 0.5s ease;
+    opacity: 0;
+    display: none;
+}
+
+.loading {
+    transition : opacity 0.5s ease;
+    opacity: 1;
+    display: block;
+}
