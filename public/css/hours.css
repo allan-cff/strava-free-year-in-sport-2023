@@ -1,5 +1,23 @@
 #total-hours {
     margin:1vh 0;
+    color : black;
+    position:relative; 
+}
+
+#total-hours p {
+    position : relative ;
+    z-index:100;
+}
+
+
+#total-hours img {
+    position : absolute;
+    top : 0;
+    left:0;
+    width:100vw;
+    margin-left : -10vw;
+    height:110%;
+    z-index:10;
 }
 
 

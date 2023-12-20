@@ -1,12 +1,27 @@
 .total-number{
-    height:15vh;
+    height:12vh;
+    position : relative;
 }
+
+.total-number p {
+    position : relative;
+    z-index : 100;
+}
+
+.total-number img {
+    position : absolute;
+    top:0;
+    left : 0;
+    height : 100%;
+    margin-left: -5vw;
+}
+
 
 .calendar {
     color:white;
     position : relative;
     width:100%;
-
+    margin-top : 5vh;
 }
 
 .year {

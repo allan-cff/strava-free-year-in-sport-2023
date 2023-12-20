@@ -11,6 +11,7 @@ body {
     max-height:100vh;
     height:100vh;
     background-color: rgb(0, 0, 0);
+    overflow:hidden;
 }
 
 main {
@@ -81,31 +82,37 @@ footer {
 h1 {
     font-weight: 400;
     font-size : 50px;
+    text-transform: uppercase;
 }
 
 h2 {
     font-weight:400;
     font-size : 40px;
+    text-transform: uppercase;
 }
 
 .number-xxl {
     font-size : 200px;
     margin:0;
+    text-transform: uppercase;
 }
 
 .number-xl {
     font-size : 160px;
     margin:0;
+    text-transform: uppercase;
 }
 
 .number-md {
     font-size : 120px;
     margin:0;
+    text-transform: uppercase;
 }
 
 .number-sm{
     font-size:60px;
     margin:0;
+    text-transform: uppercase;
 }
 
 .logo {
