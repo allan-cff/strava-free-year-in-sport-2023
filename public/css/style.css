@@ -65,13 +65,6 @@ footer {
     height:4vh;
 }
 
-.left-arrow {
-    border-right:3px solid white;
-}
-
-.right-arrow {
-    border-left:3px solid white;
-}
 
 .pagination {
     align-self: center;
@@ -81,42 +74,36 @@ footer {
 .title{
     height:4vh;
     margin:0;
-    border-bottom : 3px solid black;
-    border-top : 3px solid black;
-    padding: 1vh 0 1vh 5vw;
     position:relative;
     z-index:100;
 }
 
 h1 {
     font-weight: 400;
+    font-size : 50px;
 }
 
 h2 {
-    padding-left:5vw;
     font-weight:400;
-    font-size : 30px;
+    font-size : 40px;
 }
 
-.nomber-xxl {
-    padding-left:5vw;
+.number-xxl {
     font-size : 200px;
     margin:0;
 }
 
-.nomber-xl {
-    padding-left:5vw;
+.number-xl {
     font-size : 160px;
     margin:0;
 }
 
-.nomber-md {
-    padding-left:5vw;
+.number-md {
     font-size : 120px;
     margin:0;
 }
 
-.nomber-sm{
+.number-sm{
     font-size:60px;
     margin:0;
 }
