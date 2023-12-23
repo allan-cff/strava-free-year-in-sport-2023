@@ -31,3 +31,22 @@
     width:90%;
     margin-right:-5vw;
 }
+
+#sports {
+    position:absolute;
+    top:5vh;
+    right:17vw;
+}
+
+#sports div {
+    display:flex;
+    height: 2.5vh;
+    margin-bottom:0.25vh;
+}
+
+#sports img {
+    fill : white;
+    padding-right : 2vw;
+}
+
+/*à changer en svg*/
