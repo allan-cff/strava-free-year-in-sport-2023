@@ -4,11 +4,10 @@
 }
 
 .sport-1 {
-    height:50%;
-    
+    height:50%;  
 }
 
-.sport-1 .vitesse {
+.sport-1 .speed {
     background-image: url(../images/sport-1-fast.svg);
     background-repeat: no-repeat;
     background-position: center right;
@@ -23,10 +22,9 @@
 
 .sport-2 {
     height:50%;
- 
 }
 
-.sport-2 .vitesse {
+.sport-2 .speed {
     text-align: left;
     background-image: url(../images/sport-2-fast.svg);
     background-repeat: no-repeat;
@@ -35,10 +33,6 @@
     margin-left:-5vw;
     padding-left:5vw;
     color:black;
-}
-
-.sport-3 {
-    height:100%;
 }
 
 .sport {
@@ -52,7 +46,7 @@
     margin : 0;
 }
 
-.description-activite {
+.activity-description {
     padding-top : 2vh;
     display:flex;
     flex-direction: column;
@@ -60,19 +54,19 @@
     padding-bottom:3vh;
 }
 
-.description-activite svg {
+.activity-description svg {
     width: 10vw;
     height:10vw;
 }
 
-.vitesse {
+.speed {
     text-align: right;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.moyenne {
+.average {
     background-image: url(../images/distance-average-path.svg);
     background-repeat: no-repeat;
     background-position: right top;
@@ -88,35 +82,25 @@
     padding-top: 3vh ;
 }
 
-.moyenne svg {
+.average svg {
     fill:white;
 }
 
-.sport-moyenne {
+.sport-average {
     display:flex;
     flex-direction: row;
 }
 
-.sport-2-moyenne {
+.sport-2-average {
     text-align:left;
 }
 
-.icone-moyenne {
+.icone-average {
     width:10vw;
     margin:auto;
 }
 
-.stats-moyenne {
+.stats-average {
     padding : 1.5vh 5vw 0 5vw;
 }
 
-.nombre-moyenne {
-    font-size:100px;
-    font-weight: 300;
-    margin:0;
-}
-
-.kmh {
-    font-size:30px;
-    margin:0;
-}
