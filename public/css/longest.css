@@ -1,0 +1,39 @@
+#distance {
+    height : 22vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(../images/longest-background.svg) ;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 80%;
+    padding-left: 5vw;
+    margin-left: -5vw;
+    color:black;
+}
+
+#average {
+    display:flex;
+}
+
+#map {
+    width:84vw;
+    height:25vh;
+    transform: rotate(3deg);
+    margin : 5vh 3vw 5vh 3vw;
+    background-color: aliceblue;
+}
+
+#activity {
+    display :flex;
+    width:100%;
+}
+
+#schedules {
+    width : 30%;
+}
+
+#name {
+    font-size:30px;
+    margin:0;
+}

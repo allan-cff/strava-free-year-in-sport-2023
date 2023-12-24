@@ -1,7 +1,7 @@
 @font-face {
     font-family: Karla;
-    font-style : normal ;
-    src: url("../Karla/Karla-VariableFont_wght.ttf");
+
+    src: url("/Karla/Karla-VariableFont_wght.ttf");
 
 }
 
@@ -11,14 +11,11 @@ body {
     max-height:100vh;
     height:100vh;
     background-color: rgb(0, 0, 0);
-    overflow:hidden;
 }
 
 main {
-    background-color: black ;
+    background-color:#F4F3EB;
     height:75.5vh;
-    color : white;
-    padding : 5vw;
 }
 
 header {
@@ -53,79 +50,93 @@ footer {
     width:100vw;
     margin-bottom : 0;
     z-index:1000;
+    border-bottom : 3px solid white;
+    border-top : 3px solid white;
 }
 
-.arrow {
+.fleche {
     width:17%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-.arrow img {
+.fleche img {
     height:4vh;
 }
 
+.fleche-gauche {
+    border-right:3px solid white;
+}
+
+.fleche-droite {
+    border-left:3px solid white;
+}
 
 .pagination {
     align-self: center;
     font-size:44px;
 }
 
-.title{
+.titre{
     height:4vh;
+    background-color:#F4F3EB;
     margin:0;
+    border-bottom : 3px solid black;
+    border-top : 3px solid black;
+    padding: 1vh 0 1vh 5vw;
     position:relative;
     z-index:100;
 }
 
 h1 {
     font-weight: 400;
-    font-size : 50px;
-    text-transform: uppercase;
 }
 
 h2 {
+    padding-left:5vw;
     font-weight:400;
-    font-size : 40px;
-    text-transform: uppercase;
+    font-size : 30px;
 }
 
-.number-xxl {
+.nombre-xxl {
+    padding-left:5vw;
     font-size : 200px;
     margin:0;
-    text-transform: uppercase;
 }
 
-.number-xl {
+.nombre-xl {
+    padding-left:5vw;
     font-size : 160px;
     margin:0;
-    text-transform: uppercase;
 }
 
-.number-md {
+.nombre-md {
+    padding-left:5vw;
     font-size : 120px;
     margin:0;
-    text-transform: uppercase;
 }
 
-.number-sm{
-    font-size:40px;
+.nombre-sm{
+    font-size:60px;
     margin:0;
-    text-transform: uppercase;
 }
 
-.logo {
-    padding : 10vw;
-    margin : auto;
-}
-
-.nb {
-    font-size : 180px;
-    margin:0;
-    line-height:0.8;
-}
-
-.pseudo {
-    font-size : 50px;
+.bulle {
+    height:60vh;
+    width:60vh;
+    text-align: center;
+    background-color: #FC5200;
+    padding : 0;
+    position: absolute;
+    border-radius:40vh;
+    display : flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    z-index:10;
+    top: 10vh;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

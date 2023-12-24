@@ -1,15 +1,19 @@
 .fastest-sports {
-    height:30vh;
-}
-
-.longest-sport {
-    height : 15vh;
+    height:40vh;
+    margin-bottom:3vh;
 }
 
 .sport-1 {
-    background-color: #FC5200;
-    border-bottom: solid 3px black;
-    height:50%;
+    height:50%;  
+}
+
+.sport-1 .speed {
+    background-image: url(../images/sport-1-fast.svg);
+    background-repeat: no-repeat;
+    background-position: center right;
+    width : 65%;
+    margin-right:-5vw;
+    padding-right:5vw;
 }
 
 .sport-2 svg {
@@ -17,85 +21,86 @@
 }
 
 .sport-2 {
-    background-color : #002E51;
     height:50%;
-    color :white;
 }
 
-.sport-3 {
-    background-color: #C0CA53;
-    height:100%;
+.sport-2 .speed {
+    text-align: left;
+    background-image: url(../images/sport-2-fast.svg);
+    background-repeat: no-repeat;
+    background-position: center left;
+    width : 65%;
+    margin-left:-5vw;
+    padding-left:5vw;
+    color:black;
 }
 
 .sport {
     display:flex;
     justify-content: space-between;
-    padding : 0 5vw 0 5vw;
-    font-size : 30px;
+    padding : 0;
+    font-size:30px;
 }
 
 .sport p {
     margin : 0;
 }
 
-.description-activite {
+.activity-description {
     padding-top : 2vh;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     padding-bottom:3vh;
 }
 
-.description-activite svg {
+.activity-description svg {
     width: 10vw;
     height:10vw;
 }
 
-.vitesse {
+.speed {
     text-align: right;
-    padding-top : 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.moyenne {
-    height:12vh;
-    background-color: #495227;
+.average {
+    background-image: url(../images/distance-average-path.svg);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 90%;
+    margin-right:-5vw;
+    padding-right:5vw;
+    height:30vh;
+    justify-content: center;
+    gap:8vw;
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
-    color:white;
-    padding: 0 5vw 0 5vw;
+    color:black;
+    padding-top: 3vh ;
 }
 
-.moyenne svg {
+.average svg {
     fill:white;
 }
 
-.sport-moyenne {
+.sport-average {
     display:flex;
     flex-direction: row;
 }
 
-.sport-2-moyenne {
-    text-align: end;
-    flex-direction: row-reverse;
+.sport-2-average {
+    text-align:left;
 }
 
-.icone-moyenne {
+.icone-average {
     width:10vw;
     margin:auto;
 }
 
-.stats-moyenne {
+.stats-average {
     padding : 1.5vh 5vw 0 5vw;
 }
 
-.nombre-moyenne {
-    font-size:100px;
-    font-weight: 300;
-    margin:0;
-}
-
-.kmh {
-    font-size:30px;
-    margin:0;
-}

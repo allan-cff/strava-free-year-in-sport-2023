@@ -1,0 +1,97 @@
+.total-number {
+    position : relative;
+    padding : 3vh 0 4vh 0;
+    margin-top:-2vh;
+    color:black;
+}
+
+.total-number p {
+    position : relative;
+    z-index : 100;
+}
+
+.total-number img {
+    position : absolute;
+    top:0;
+    left : 0;
+    height : 100%;
+    width: 100%;
+    margin-left: -5vw;
+}
+
+#year {
+    width:90vw;
+}
+
+
+#year h2 {
+    margin : 0;
+}
+
+#year .distance {
+    padding-left:2vw;
+}
+
+.month {
+    width : 100%;
+    height : 4vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.name {
+    justify-content: end;
+    width : 8vw;
+    display:flex;
+    align-items: center;
+}
+
+.bar {
+    width : 65vw;
+    margin : 0 0 0 3vw;
+    background-image: url(../images/dash-lign.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.max-month {
+    height:2.5vh;
+    margin : 0.75vh 0;
+    background-color: #FC5200;
+    color:black;
+    border:none;
+}
+
+.max-month .bar { 
+    background-image: none;
+}
+
+.max-month .rectangle {
+    display:none;
+}
+
+.max-month .distance {
+    background-color: black;
+    border : solid 5px black;
+    color:white;
+    display:flex;
+}
+
+.rectangle {
+    height:2.5vh;
+    margin : 0.75vh 0;
+    width: 90%;
+    background-color: white;
+
+}
+
+.distance {
+    width : 14vw;
+    display:flex;
+    align-items: center;
+}
+
+
+
