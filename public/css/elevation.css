@@ -1,0 +1,102 @@
+#total {
+    background-image: url(../images/elevation-background.svg);
+    background-repeat: no-repeat;
+    background-position: center left;
+    width : 100%;
+    height:14vh;
+    margin-left:-3vw;
+    padding-left:3vw;
+    padding-top : 3vh;
+    margin-top:-2vh;
+}
+
+.max {
+    background-color: #FC5200;
+    color:black;
+}
+
+#chart {
+    height:50vh;
+    width:90vw;
+    display:flex;
+    margin : 5vh 0;
+    position :relative;
+}
+
+
+
+#meters {
+    margin-top: -40vh;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+    display:flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    font-size: 40px;
+    height:90vw;
+    width: 15vw;
+}
+
+#meters p {
+    margin:0;
+    height:7.5vw;
+    display:flex;
+    align-items: center; 
+    padding-left:1vw; 
+}
+
+#triangles {
+    width : 90vw;
+    height:32vh;
+    position : absolute;
+    top : 17vw;
+    display:flex;
+}
+
+#triangles>div {
+    width : 7.5vw;
+    height:100%;
+    background-image: url(../images/dash-lign-vertical.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position:relative;
+}
+
+#triangles img {
+    bottom : 0;
+    left:-1.25vw;
+    position:absolute;
+    width:10vw;
+    height:32vh;
+}
+
+#triangles #triangle-january {
+    left:3.5vw;
+    width : 5vw;
+}
+
+#triangles #triangle-december {
+    left: -1vw;
+    width : 5vw;
+}
+
+#months {
+    transform: rotate(90deg);
+    margin-left:-15vw;
+    transform-origin: left bottom;
+    display:flex;
+    flex-direction:column-reverse;
+    justify-content: space-between;
+    font-size: 40px;
+    height:90vw;
+    width: 10vw;
+    
+}
+
+#months p {
+    margin:0;
+    height:7.5vw;
+    display:flex;
+    align-items: center;
+    padding-left:1vw;  
+}
