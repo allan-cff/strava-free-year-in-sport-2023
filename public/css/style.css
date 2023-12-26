@@ -29,7 +29,6 @@ header {
     align-items: flex-end;
     color:white;
     padding: 0 5vw 2vh 5vw;
-    
 }
 
 header img {
@@ -40,8 +39,6 @@ header p {
     margin:0;
     font-size:38px;
 }
-
-
 
 footer {
     height:9vh;
@@ -65,7 +62,6 @@ footer {
 .arrow img {
     height:4vh;
 }
-
 
 .pagination {
     align-self: center;

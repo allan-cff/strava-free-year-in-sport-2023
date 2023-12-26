@@ -37,8 +37,7 @@ main {
     align-items: center;
     justify-content: center;
     overflow:hidden;
-    z-index:10;
-    
+    z-index:10;   
 }
 
 .presentation p {
