@@ -122,6 +122,15 @@ h2 {
     line-height:0.8;
 }
 
+.year-2023{
+    background-image: url(../images/2023-background.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    color:black;
+    margin : -1vh 0 -1vh -8vw;
+    padding: 1vh 0 1vh 8vw;
+}
+
 .pseudo {
     font-size : 50px;
 }

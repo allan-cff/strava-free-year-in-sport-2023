@@ -1,0 +1,35 @@
+#top {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right:5vw;
+}
+
+.logo {
+    padding : 5vw;
+    margin:0;
+}
+
+.logo .nb {
+    font-size:100px;
+}
+
+.year-2023{
+    background-image: url(../images/2023-background.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    color:black;
+    margin : -0.5vh 0 -0.5vh -4vw;
+    padding: 0.5vh 0 0.5vh 4vw;
+}
+
+#profil-picture {
+    height:30vw;
+    width:30vw;
+    transform: rotate(5deg);
+}
+
+#pseudo {
+    font-size:40px;
+    text-align: right;
+}
