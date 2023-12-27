@@ -1,0 +1,150 @@
+#bike {
+    height : 17vh;
+    display:flex;
+}
+
+#run {
+    height : 17vh;
+    display:flex;
+    margin-top:-2vh;
+}
+
+.kilometers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    width : 40%;
+    color:black;
+}
+
+#bike .kilometers {
+    background-image: url(../images/bike-background.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    margin-left : -5vw;
+    padding-left:5vw;
+}
+
+#run .kilometers {
+    background-image: url(../images/run-background.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-right : -5vw;
+    padding-right:5vw;
+    align-items: end;
+}
+
+.kilometers svg {
+    height : 12vw;
+    width : 12vw
+}
+
+.distance {
+    height:12vw;
+    display:flex;
+    flex-direction: column ;
+    padding-bottom : 2vh;
+}
+
+.km {
+    margin-top:-1vh;
+}
+
+.info {
+    padding-left:5vw;
+    width : 55%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#run .info {
+    padding-left:0;
+    padding-right:5vw;
+    width : 55%;
+    display:flex;
+    text-align:right;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name {
+    font-size:40px;
+    margin : 0;
+}
+
+.modele {
+    font-size : 30px;
+    margin : 0;
+}
+
+.hours {
+    font-size : 30px;
+    margin:0;
+    padding-top :1vh;
+}
+
+#average {
+    background-image: url(../images/fc-background.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    margin-left : -5vw;
+    padding-left:5vw;
+    color:white;
+    height:14vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#average-heart {
+    font-size:60px;
+    margin:0;
+}
+
+#max {
+    height : 20vh;
+    background-image: url(../images/max-fc-background.svg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    margin-right : -5vw;
+    padding-right:5vw;
+    padding-top : 3vw;
+    position:relative;
+    color:black;
+}
+
+#max h2 {
+    position :absolute;
+    top : 7vh;
+    left:7vw;
+}
+
+#triangle-max {
+    background-image: url("../images/triangle-max.svg");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    position :absolute;
+    bottom : 0;
+    left:5vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:80%;
+    width: 60%;
+}
+
+#bpm {
+    padding-top : 5vh;
+    padding-left: 5vw;
+    font-size:30px;
+    margin:0;
+}
+
+#activity-max {
+    font-size : 30px;
+    padding-left:55vw;
+    padding-top:3vh;
+    width : 30vw;
+}

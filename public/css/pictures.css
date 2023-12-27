@@ -1,0 +1,50 @@
+#best-pictures {
+    height:95%;
+    padding : 6vh 0;
+}
+
+#best-pictures>div {
+    display:flex;
+    flex-direction: row;
+    height:33%;
+}
+
+#second {
+    margin : -5vh 0;
+}
+
+#best-pictures #second {
+    flex-direction: row-reverse;
+}
+
+.pictures-photo {
+    height : 45vw;
+    width:45vw;
+    transform: rotate(5deg);
+}
+
+#second .pictures-photo {
+    transform: rotate(-5deg);
+}
+
+.pictures-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left : 5vw;
+}
+
+#second .pictures-info {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 5vw;
+}
+
+.pictures-schedules {
+    padding-bottom:2vh;
+}
+
+.pictures-name {
+    padding-bottom :5vh;
+}
+

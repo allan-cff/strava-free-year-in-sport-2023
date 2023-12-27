@@ -1,0 +1,56 @@
+#number {
+    display : flex;
+    align-items: center;
+}
+
+#number img {
+    height:15vw;
+    width : 15vw;
+    fill:white;
+}
+
+#x {
+    margin : 0 3vw;
+}
+
+#everest {
+    margin : 5vh 0;
+    font-size:30px;
+}
+
+#everest div {
+    display:flex;
+    align-items: center;
+}
+
+#everest img {
+    margin : 0 5vw 0 -10vw;
+    height:20vw;
+    width : 28vw;
+}
+
+#kudos {
+    width : 85vw;
+    height:30vh;
+    padding-left: 10vw;
+    background-image: url(../images/kudos-background.svg);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:black;
+    margin-right:-5vw;
+}
+
+#kudos>div {
+    display:flex;
+}
+
+#received {
+    padding-right : 10vw;
+}
+
+#name {
+    font-size :30px;
+}

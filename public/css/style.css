@@ -29,7 +29,6 @@ header {
     align-items: flex-end;
     color:white;
     padding: 0 5vw 2vh 5vw;
-    
 }
 
 header img {
@@ -40,8 +39,6 @@ header p {
     margin:0;
     font-size:38px;
 }
-
-
 
 footer {
     height:9vh;
@@ -65,7 +62,6 @@ footer {
 .arrow img {
     height:4vh;
 }
-
 
 .pagination {
     align-self: center;
@@ -124,6 +120,15 @@ h2 {
     font-size : 180px;
     margin:0;
     line-height:0.8;
+}
+
+.year-2023{
+    background-image: url(../images/2023-background.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    color:black;
+    margin : -1vh 0 -1vh -8vw;
+    padding: 1vh 0 1vh 8vw;
 }
 
 .pseudo {
