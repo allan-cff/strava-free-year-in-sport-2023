@@ -32,11 +32,13 @@
 
 .month {
     margin:0.5vw;
+    display:flex;
 }
 
 .days{
     display:flex;
     align-items: center;
+    margin-left:3vw;
 }
 
 .calendar h2 {
