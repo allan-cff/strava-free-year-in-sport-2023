@@ -41,6 +41,7 @@
     background-image: url(../images/recap-background.svg);
     background-repeat: no-repeat;
     background-position: bottom;
+    background-size: cover;
     margin:-5vw;
     padding:0 5vw;
 }
