@@ -11,6 +11,22 @@ main {
     background-color: transparent;
 }
 
+#bad-device {
+    height:85vh;
+    position:relative;
+    z-index:1000;
+    display:none;
+    flex-direction: column;
+    color:white;
+    font-size : 40px;
+    text-align:center;
+    padding : 20vh 10vw;
+}
+
+header {
+    display:flex;
+}
+
 #profil {
     margin-left : 10vw;
     display:none;
@@ -30,7 +46,7 @@ main {
     overflow:hidden;
     position:relative;
     width:100%;
-    height:15vh;
+    height:20vh;
     text-align: center;
     padding : 0;
     display : flex;
@@ -134,5 +150,6 @@ progress::-moz-progress-bar {
 }
 
 footer {
+    display:none;
     justify-content: end;
 }

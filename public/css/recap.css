@@ -33,3 +33,46 @@
     font-size:40px;
     text-align: right;
 }
+
+#bottom {
+    height:60vh;
+    display : flex;
+    justify-content: space-between;
+    background-image: url(../images/recap-background.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    margin:-5vw;
+    padding:0 5vw;
+}
+
+#left {
+    width : 60%;
+    padding-top : 11vh;
+}
+
+#left div {
+    margin-bottom : 6vh;
+}
+
+#total-hours {
+    color:black;
+}
+
+#right {
+    width : 40%;
+    padding-top : 22vh;
+}
+
+#right div {
+    margin-bottom : 3vh;
+}
+
+#top-sport img {
+    width:80%;
+}
+
+#active-days {
+    color:black;
+}
+
