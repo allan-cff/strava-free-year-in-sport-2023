@@ -80,3 +80,7 @@
 .number-md {
     padding : 0 2vw;
 }
+
+.left-arrow {
+    visibility: hidden;
+}
