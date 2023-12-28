@@ -180,6 +180,15 @@ function getHoursByMonth(activities){
     return timeByMonth;
 }
 
+function getElevationByMonth(activities){
+    const elevationByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for(const activity of activities){
+        const actDate = new Date(activity.start_date_local);
+        elevationByMonth[actDate.getMonth()] = elevationByMonth[actDate.getMonth()] + activity.total_elevation_gain
+    }
+    return elevationByMonth;
+}
+
 module.exports = {
     sortByKudos: sortByKudos,
     getMostKudoed: getMostKudoed,
@@ -190,4 +199,5 @@ module.exports = {
     getBestEquipment: getBestEquipment, 
     getDaysActive: getDaysActive,
     getHoursByMonth: getHoursByMonth,
+    getElevationByMonth: getElevationByMonth,
 }
