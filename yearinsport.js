@@ -28,7 +28,7 @@ function getMostKudoedPicturesActivitiesId(activities, limit=4, pictureByActivit
     return result;
 }
 
-function getTotals(activities){
+function getTotals(activities, byMonth=true){
     const totals = {
         total : {
             climb : 0,
@@ -94,6 +94,18 @@ function getTotals(activities){
             totals[type].pr += activity.pr_count;
             totals[type].kudos += activity.kudos_count;
             totals[type].count += 1;
+        }
+    }
+    if(byMonth){
+        totals.byMonth = []
+        for(i=0; i<12; i++){
+            const monthActivities = [];
+            for(const activity of activities){
+                if(new Date(activity.start_date_local).getMonth() === i){
+                    monthActivities.push(activity);
+                }
+            }
+            totals.byMonth[i] = getTotals(monthActivities, false)
         }
     }
     return totals;
@@ -171,24 +183,6 @@ function getDaysActive(activities){
     return daysActive;
 }
 
-function getHoursByMonth(activities){
-    const timeByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    for(const activity of activities){
-        const actDate = new Date(activity.start_date_local);
-        timeByMonth[actDate.getMonth()] = timeByMonth[actDate.getMonth()] + activity.moving_time/60/60
-    }
-    return timeByMonth;
-}
-
-function getElevationByMonth(activities){
-    const elevationByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    for(const activity of activities){
-        const actDate = new Date(activity.start_date_local);
-        elevationByMonth[actDate.getMonth()] = elevationByMonth[actDate.getMonth()] + activity.total_elevation_gain
-    }
-    return elevationByMonth;
-}
-
 module.exports = {
     sortByKudos: sortByKudos,
     getMostKudoed: getMostKudoed,
@@ -197,7 +191,5 @@ module.exports = {
     getSportsDuration: getSportsDuration,
     getEquipments: getEquipments,
     getBestEquipment: getBestEquipment, 
-    getDaysActive: getDaysActive,
-    getHoursByMonth: getHoursByMonth,
-    getElevationByMonth: getElevationByMonth,
+    getDaysActive: getDaysActive
 }

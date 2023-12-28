@@ -8,9 +8,7 @@ const {
     getSportsDuration,
     getEquipments,
     getBestEquipment, 
-    getDaysActive,
-    getHoursByMonth,
-    getElevationByMonth
+    getDaysActive
 } = require('./yearinsport');
 
 class Strava {
@@ -298,10 +296,7 @@ class Athlete {
             _id: this.link,
             daysActive: getDaysActive(activities),
             totals2023: getTotals(activities),
-            totals2022: getTotals(lastYearActivities),
-            hoursByMonth: getHoursByMonth(activities),
-            elevationByMonth: getElevationByMonth(activities),
-            sportsDuration: getSportsDuration(activities)
+            totals2022: getTotals(lastYearActivities)
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
