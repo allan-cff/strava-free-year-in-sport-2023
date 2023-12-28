@@ -9,6 +9,7 @@ const {
     getEquipments,
     getBestEquipment, 
     getDaysActive,
+    getBest,
     getBestActivities
 } = require('./yearinsport');
 
@@ -269,12 +270,15 @@ class Athlete {
     async prepare(forceFetch=false, timezone=0){ // TODO : gestion waitlist
         await this.fetchActivities()
         const activities = await this.getAllActivities();
-        const bestPicturesActivitiesId = getMostKudoedPicturesActivitiesId(activities);
-        for(const id of bestPicturesActivitiesId){
+        const activitiesToDetail = getMostKudoedPicturesActivitiesId(activities);
+        const mostKudoed = await getMostKudoed(activities);
+        activitiesToDetail.push(mostKudoed._id)
+        const longestActivity = getBest(activities, 'all', 'distance');
+        activitiesToDetail.push(longestActivity._id)
+
+        for(const id of activitiesToDetail){
            this.fetchDetailledActivity(id)
         }
-        const mostKudoed = await getMostKudoed(activities);
-        await this.fetchDetailledActivity(mostKudoed._id);
         const equipments2023 = getEquipments(activities);
         const bestBike = getBestEquipment(equipments2023, 'ride');
         const bestShoes = getBestEquipment(equipments2023, 'run');

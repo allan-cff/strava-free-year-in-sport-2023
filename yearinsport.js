@@ -147,7 +147,7 @@ function getBestActivities(activities, sport1='ride', sport2='run'){
     bestActivities.fastest = {};
     bestActivities.fastest[sport1] = getBest(activities, sport1, 'average_speed');
     bestActivities.fastest[sport2] = getBest(activities, sport2, 'average_speed');
-    bestActivities.longuest = getBest(activities, 'all', 'distance');
+    bestActivities.longest = getBest(activities, 'all', 'distance');
     bestActivities.highestHeartRate = getBest(activities, 'all', 'average_heartrate');
     bestActivities.mostKudoedPictures = getMostKudoedPicturesActivitiesId(activities, 2).map(id => activities.find(activity => activity._id === id));
     return bestActivities;
@@ -222,5 +222,6 @@ module.exports = {
     getEquipments: getEquipments,
     getBestEquipment: getBestEquipment, 
     getDaysActive: getDaysActive,
+    getBest: getBest,
     getBestActivities: getBestActivities
 }
