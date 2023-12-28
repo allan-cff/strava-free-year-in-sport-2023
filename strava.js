@@ -8,7 +8,8 @@ const {
     getSportsDuration,
     getEquipments,
     getBestEquipment, 
-    getDaysActive
+    getDaysActive,
+    getBestActivities
 } = require('./yearinsport');
 
 class Strava {
@@ -273,7 +274,7 @@ class Athlete {
            this.fetchDetailledActivity(id)
         }
         const mostKudoed = await getMostKudoed(activities);
-        await this.fetchDetailledActivity(mostKudoed);
+        await this.fetchDetailledActivity(mostKudoed._id);
         const equipments2023 = getEquipments(activities);
         const bestBike = getBestEquipment(equipments2023, 'ride');
         const bestShoes = getBestEquipment(equipments2023, 'run');
@@ -292,12 +293,16 @@ class Athlete {
     async buildStats(){
         const activities = await this.getAllActivities();
         const lastYearActivities = await this.getAllActivities("2022-activities");
+        const totals = getTotals(activities);
+        const notSportKey = ['byMonth', 'total', 'heartrate'];
+        const bestSports = Object.keys(totals).filter(key => !notSportKey.includes(key)).sort((a, b) => totals[b].hours - totals[a].hours);
         const stats = {
             _id: this.link,
             daysActive: getDaysActive(activities),
             totals2023: getTotals(activities),
             totals2022: getTotals(lastYearActivities),
-            sportsDuration: getSportsDuration(activities)
+            sportsDuration: getSportsDuration(activities),
+            bestActivities: getBestActivities(activities, bestSports[0], bestSports[1])
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
