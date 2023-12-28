@@ -296,7 +296,8 @@ class Athlete {
             _id: this.link,
             daysActive: getDaysActive(activities),
             totals2023: getTotals(activities),
-            totals2022: getTotals(lastYearActivities)
+            totals2022: getTotals(lastYearActivities),
+            sportsDuration: getSportsDuration(activities)
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
