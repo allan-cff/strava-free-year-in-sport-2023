@@ -8,7 +8,8 @@ const {
     getSportsDuration,
     getEquipments,
     getBestEquipment, 
-    getDaysActive
+    getDaysActive,
+    getHoursByMonth,
 } = require('./yearinsport');
 
 class Strava {
@@ -130,23 +131,25 @@ class Athlete {
         res.status(200).json(daysActive);
     }
 
-    async fetchActivities(updateAll=false, options = {timezone: 0, startDate: new Date('2023-01-01 00:00:00'), endDate: new Date('2024-01-01 00:00:00')}){
+    async fetchActivities(options = {collection: 'activities', updateAll: false, timezone: 0, startDate: new Date('2023-01-01 00:00:00'), endDate: new Date('2024-01-01 00:00:00')}){
         if(Date.now() > this.expiration){
             await this.#strava_instance.refreshAthlete(this);
         }
         options.timezone = options.timezone || 0;
+        options.updateAll = options.updateAll || false;
+        options.collection = options.collection || 'activities';
         let timeZoneString;
         if(options.timezone >= 0){
             timeZoneString = `GMT+${options.timezone.toString(10)}`;
         } else {
             timeZoneString = `GMT${options.timezone.toString(10)}`;
         }
-        options.endDate = options.endDate || new Date(`2024-01-01 00:00:00 ${timeZoneString}`);
         options.startDate = options.startDate || new Date(`2023-01-01 00:00:00 ${timeZoneString}`);
-        const cursor = this.#strava_instance.database.collection("activities").find({'athleteId': this.id})
+        options.endDate = options.endDate || new Date(`2024-01-01 00:00:00 ${timeZoneString}`);
+        const cursor = this.#strava_instance.database.collection(options.collection).find({'athleteId': this.id})
         const prevActivities = await cursor.toArray();
         let endDate = options.endDate;
-        if(prevActivities.length !== 0 && !updateAll){
+        if(prevActivities.length !== 0 && !options.updateAll){
             endDate = new Date(prevActivities.sort((a,b) => new Date(a.start_date) - new Date(b.start_date))[0].start_date)
         }
         let startDate = options.startDate;
@@ -171,7 +174,7 @@ class Athlete {
                 delete Object.assign(activity, { 'athleteId': activity.athlete.id })['athlete'];
                 Object.assign(res, {'detailled': false});
                 delete Object.assign(activity, { '_id': activity.id })['id'];
-                if(!updateAll){
+                if(!options.updateAll){
                     if(!(prevActivities.find(a => a._id === activity.id))){  // checking for no doubles (page refresh for example)
                         newActivities.push({
                             'insertOne': {
@@ -190,20 +193,22 @@ class Athlete {
                 }
             }
             if(newActivities.length !== 0){
-                await this.#strava_instance.database.collection("activities").bulkWrite(newActivities);
+                await this.#strava_instance.database.collection(options.collection).bulkWrite(newActivities);
             }
             if(res.length === 30){
-                await this.fetchActivities(updateAll, {timezone:options.timezone, endDate:options.endDate}); 
+                await this.fetchActivities({updateAll: options.updateAll, timezone:options.timezone, endDate:options.endDate}); 
             }
         }
     }
 
-    async fetchDetailledActivity(id, force=false){
+    async fetchDetailledActivity(id, options = {collection: 'activities', updateAll: false}){
         if(Date.now() > this.expiration){
             await this.#strava_instance.refreshAthlete(this);
         }
-        const activity = await this.#strava_instance.database.collection("activities").findOne({_id:id});
-        if(!force && activity.detailled){
+        options.updateAll = options.updateAll || false;
+        options.collection = options.collection || 'activities';
+        const activity = await this.#strava_instance.database.collection(options.collection).findOne({_id:id});
+        if(!options.updateAll && activity.detailled){
             return;
         }
         const response = await fetch(`https://www.strava.com/api/v3/activities/${id}?include_all_efforts=true`, {
@@ -225,12 +230,12 @@ class Athlete {
             delete Object.assign(res, { '_id': res.id })['id'];
             Object.assign(res, {'detailled': true});
             delete Object.assign(res, { 'athleteId': res.athlete.id })['athlete'];
-            await this.#strava_instance.database.collection("activities").updateOne({_id: res._id},{$set:res},{upsert: true});
+            await this.#strava_instance.database.collection(options.collection).updateOne({_id: res._id},{$set:res},{upsert: true});
         }
     }
 
     async getAllActivities(collection='activities'){
-        const cursor = this.#strava_instance.database.collection(collection).find({})
+        const cursor = this.#strava_instance.database.collection(collection).find({athleteId: this.id})
         return await cursor.toArray();
     }
 
@@ -280,16 +285,21 @@ class Athlete {
             this.fetchDetailledEquipment(bestShoes)
         }
         this.buildStats();
+
+        await this.fetchActivities({collection: '2022-activities', startDate: new Date('2022-01-01 00:00:00'), endDate: new Date('2023-01-01 00:00:00')})
         return true;//préparation terminée
     }
 
     async buildStats(){
         const activities = await this.getAllActivities();
+        const lastYearActivities = await this.getAllActivities("2022-activities");
         const stats = {
             _id: this.link,
             daysActive: getDaysActive(activities),
             totals2023: getTotals(activities),
-            sportsDuration2023: getSportsDuration(activities)
+            totals2022: getTotals(lastYearActivities),
+            hoursByMonth: getHoursByMonth(activities),
+            sportsDuration: getSportsDuration(activities)
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;

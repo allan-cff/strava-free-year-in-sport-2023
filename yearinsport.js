@@ -171,6 +171,15 @@ function getDaysActive(activities){
     return daysActive;
 }
 
+function getHoursByMonth(activities){
+    const timeByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for(const activity of activities){
+        const actDate = new Date(activity.start_date_local);
+        timeByMonth[actDate.getMonth()] = timeByMonth[actDate.getMonth()] + activity.moving_time/60/60
+    }
+    return timeByMonth;
+}
+
 module.exports = {
     sortByKudos: sortByKudos,
     getMostKudoed: getMostKudoed,
@@ -179,5 +188,6 @@ module.exports = {
     getSportsDuration: getSportsDuration,
     getEquipments: getEquipments,
     getBestEquipment: getBestEquipment, 
-    getDaysActive: getDaysActive
+    getDaysActive: getDaysActive,
+    getHoursByMonth: getHoursByMonth,
 }
