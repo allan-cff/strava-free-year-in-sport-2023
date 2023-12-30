@@ -301,7 +301,7 @@ class Athlete {
     async buildStats(){
         const activities = await this.getAllActivities();
         const equipments = await this.getAllEquipments();
-        console.log(equipments)
+        const athlete = await this.profile
         const equipments2023 = getEquipments(activities);
         const bestBike = getBestEquipment(equipments2023, 'ride');
         const bestShoes = getBestEquipment(equipments2023, 'run');
@@ -321,6 +321,11 @@ class Athlete {
                 'ride': bestBike !== null ? {...bestBike, ...equipments.find(e => e._id === bestBike.id)} : null,
                 'run': bestShoes !== null ? {...bestShoes, ...equipments.find(e => e._id === bestShoes.id)} : null
             },
+            athlete: {
+                'image': athlete.profile,
+                'firstname': athlete.firstname,
+                'lastname': athlete.lastname
+            }
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
