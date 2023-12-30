@@ -306,7 +306,8 @@ class Athlete {
             totals2023: getTotals(activities),
             totals2022: getTotals(lastYearActivities),
             sportsDuration: getSportsDuration(activities),
-            bestActivities: getBestActivities(activities, bestSports[0], bestSports[1])
+            bestActivities: getBestActivities(activities, bestSports[0], bestSports[1]),
+            bestPictures: getMostKudoedPicturesActivitiesId(activities).map(id => activities.find(e => e._id === id))
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;

@@ -12,7 +12,7 @@ function getMostKudoed(activities){
     return sortByKudos(activities)[0];
 }
 
-function getMostKudoedPicturesActivitiesId(activities, limit=4, pictureByActivity=1){
+function getMostKudoedPicturesActivitiesId(activities, limit=3, pictureByActivity=1){
     const sortedActivities = sortByKudos(activities);
     let counter = 0;
     const result = [];
