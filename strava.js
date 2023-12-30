@@ -261,10 +261,15 @@ class Athlete {
         }
         if(response.status === 200){
             const res = await response.json();
-            console.log(res);
             delete Object.assign(res, { '_id': res.id })['id'];
+            Object.assign(res, { 'athleteId': this.id })
             this.#strava_instance.database.collection('equipments').updateOne({_id: res._id}, {$set: res}, {upsert: true});
         }
+    }
+
+    async getAllEquipments(){
+        const cursor = this.#strava_instance.database.collection('equipments').find({athleteId: this.id})
+        return await cursor.toArray();
     }
 
     async prepare(forceFetch=false, timezone=0){ // TODO : gestion waitlist
@@ -289,13 +294,17 @@ class Athlete {
             this.fetchDetailledEquipment(bestShoes)
         }
         this.buildStats();
-
         await this.fetchActivities({collection: '2022-activities', startDate: new Date('2022-01-01 00:00:00'), endDate: new Date('2023-01-01 00:00:00')})
         return true;//préparation terminée
     }
 
     async buildStats(){
         const activities = await this.getAllActivities();
+        const equipments = await this.getAllEquipments();
+        console.log(equipments)
+        const equipments2023 = getEquipments(activities);
+        const bestBike = getBestEquipment(equipments2023, 'ride');
+        const bestShoes = getBestEquipment(equipments2023, 'run');
         const lastYearActivities = await this.getAllActivities("2022-activities");
         const totals = getTotals(activities);
         const notSportKey = ['byMonth', 'total', 'heartrate'];
@@ -307,7 +316,11 @@ class Athlete {
             totals2022: getTotals(lastYearActivities),
             sportsDuration: getSportsDuration(activities),
             bestActivities: getBestActivities(activities, bestSports[0], bestSports[1]),
-            bestPictures: getMostKudoedPicturesActivitiesId(activities).map(id => activities.find(e => e._id === id))
+            bestPictures: getMostKudoedPicturesActivitiesId(activities).map(id => activities.find(e => e._id === id)),
+            bestEquipments: {
+                'ride': bestBike !== null ? {...bestBike, ...equipments.find(e => e._id === bestBike.id)} : null,
+                'run': bestShoes !== null ? {...bestShoes, ...equipments.find(e => e._id === bestShoes.id)} : null
+            },
         };
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
