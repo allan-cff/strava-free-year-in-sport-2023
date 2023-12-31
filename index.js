@@ -26,7 +26,6 @@ router.get('/token', async (req, res) => {
     let athlete = await strava.createAthlete(code);
     res.status(200).json({
         'token': athlete.token,
-        'expiration': athlete.expiration
     });
 })
 
@@ -35,6 +34,7 @@ router.get('/profile', async (req, res) => {
     let athlete = await strava.getAthlete(token);
     if(athlete !== null){
         let profile = await athlete.profile;
+        profile.token = athlete.token;
         res.status(200).json(profile);
     } else {
         res.status(401).end();

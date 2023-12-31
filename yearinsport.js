@@ -9,10 +9,10 @@ function sortByKudos(activities){
 }
 
 function getMostKudoed(activities){
-    return sortByKudos(activities)[0]._id;
+    return sortByKudos(activities)[0];
 }
 
-function getMostKudoedPicturesActivitiesId(activities, limit=4, pictureByActivity=1){
+function getMostKudoedPicturesActivitiesId(activities, limit=3, pictureByActivity=1){
     const sortedActivities = sortByKudos(activities);
     let counter = 0;
     const result = [];
@@ -28,7 +28,7 @@ function getMostKudoedPicturesActivitiesId(activities, limit=4, pictureByActivit
     return result;
 }
 
-function getTotals(activities){
+function getTotals(activities, byMonth=true){
     const totals = {
         total : {
             climb : 0,
@@ -96,6 +96,18 @@ function getTotals(activities){
             totals[type].count += 1;
         }
     }
+    if(byMonth){
+        totals.byMonth = []
+        for(i=0; i<12; i++){
+            const monthActivities = [];
+            for(const activity of activities){
+                if(new Date(activity.start_date_local).getMonth() === i){
+                    monthActivities.push(activity);
+                }
+            }
+            totals.byMonth[i] = getTotals(monthActivities, false)
+        }
+    }
     return totals;
 }
 
@@ -109,6 +121,36 @@ function getSportsDuration(activities){
         }
     }
     return sportDuration;
+}
+
+function getBest(activities, sportType, comparedData){
+    return activities.reduce((best, current) => {
+        if(best === null || (best.type !== sportType && sportType !== 'all')){
+            if(current.type === sportType || sportType === 'all'){
+                return current;
+            }
+            return null;
+        }
+        if(current.type !== sportType && sportType !== 'all'){
+            return best;
+        }
+        if(current[comparedData] > best[comparedData]){
+            return current;
+        }
+        return best;
+    });
+}
+
+function getBestActivities(activities, sport1='ride', sport2='run'){
+    const bestActivities = {};
+    bestActivities.mostKudoed = getMostKudoed(activities);
+    bestActivities.fastest = {};
+    bestActivities.fastest[sport1] = getBest(activities, sport1, 'average_speed');
+    bestActivities.fastest[sport2] = getBest(activities, sport2, 'average_speed');
+    bestActivities.longest = getBest(activities, 'all', 'distance');
+    bestActivities.highestHeartRate = getBest(activities, 'all', 'average_heartrate');
+    bestActivities.mostKudoedPictures = getMostKudoedPicturesActivitiesId(activities, 2).map(id => activities.find(activity => activity._id === id));
+    return bestActivities;
 }
 
 function getEquipments(activities){
@@ -179,5 +221,7 @@ module.exports = {
     getSportsDuration: getSportsDuration,
     getEquipments: getEquipments,
     getBestEquipment: getBestEquipment, 
-    getDaysActive: getDaysActive
+    getDaysActive: getDaysActive,
+    getBest: getBest,
+    getBestActivities: getBestActivities
 }

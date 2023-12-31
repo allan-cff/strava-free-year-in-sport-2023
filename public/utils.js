@@ -1,0 +1,53 @@
+let sportIcons = {
+    AlpineSki: '/images/sports/ski.svg',
+    BackcountrySki: '/images/sports/ski.svg',
+    Canoeing: '/images/sports/canoe.svg',
+    Crossfit: '/images/sports/crossfit.svg',
+    EBikeRide: '/images/sports/elec-bike.svg',
+    Elliptical: '/images/sports/bike.svg',
+    EMountainBikeRide: '/images/sports/elec-bike.svg',
+    Golf: '/images/sports/golf.svg',
+    GravelRide: '/images/sports/bike.svg',
+    Handcycle: '/images/sports/handbike.svg',
+    Hike: '/images/sports/hiking.svg',
+    IceSkate: '/images/sports/ice-skating.svg',
+    InlineSkate: '/images/sports/roller-blading.svg',
+    Kayaking: '/images/sports/canoe.svg',
+    Kitesurf: '/images/sports/kitesurf.svg',
+    MountainBikeRide: '/images/sports/bike.svg',
+    NordicSki: '/images/sports/ski.svg',
+    Ride: '/images/sports/bike.svg',
+    RockClimbing: '/images/sports/climb.svg',
+    RollerSki: '/images/sports/ski.svg',
+    Rowing: '/images/sports/rowing.svg',
+    Run: '/images/sports/run.svg',
+    Sail: '/images/sports/sail.svg',
+    Skateboard: '/images/sports/skateboard.svg',
+    Snowboard: '/images/sports/snowboard.svg',
+    Snowshoe: '/images/sports/snowshoes.svg',
+    Soccer: '/images/sports/soccer.svg',
+    StairStepper: '/images/sports/stairs.svg',
+    StandUpPaddling: '/images/sports/paddle.svg',
+    Surfing: '/images/sports/surf.svg',
+    Swim: '/images/sports/swim.svg',
+    TrailRun: '/images/sports/run.svg',
+    Velomobile: '/images/sports/mobile-bike.svg',
+    VirtualRide: '/images/sports/bike.svg',
+    VirtualRun: '/images/sports/run.svg',
+    Walk: '/images/sports/walk.svg',
+    WeightTraining: '/images/sports/workout.svg',
+    Wheelchair: '/images/sports/wheelchair.svg',
+    Windsurf: '/images/sports/surf.svg',
+    Workout: '/images/sports/workout.svg',
+    Yoga: '/images/sports/yoga.svg'
+}
+
+let sportLanguages = {
+    "fr": {
+        "Ride" : "Cyclisme",
+        "MountainBikeRide" : "VTT",
+        "Run" : "Course",
+        "Hike" : "Randonnée",
+        "Swim" : "Natation"
+    }
+}

@@ -44,30 +44,44 @@ async function getUserToken(code){
     }
 }
 
-function getUserProfile(token){
-    fetch(`/profile?token=${token}`, {
+async function refreshUserToken(token){
+    let response = await fetch(`/refresh?token=${token}`, {
         method: 'GET'
-    }).then(response => {
-        if(response.status === 200){
-            response.json().then(async res => {
-                //TODO : AFFICHER PROFIL + BOUTON LISTE ATTENTE CHARGEMENT DONNEES
-                console.log(res);                            
-            });
-        }
     })
+    if(response.status === 200){
+        let res = await response.json()
+        return res;
+    }
+}
+
+async function getUserProfile(token){
+    const response = await fetch(`/profile?token=${token}`, {
+        method: 'GET'
+    });
+    if(response.status === 200){
+        const res = await response.json()
+        //TODO : AFFICHER PROFIL + BOUTON LISTE ATTENTE CHARGEMENT DONNEES
+        return res;
+    }
 }
 
 let url = new URL(location.href);
 if('token' in localStorage){
-    getUserProfile(localStorage.getItem('token'));
+    getUserProfile(localStorage.getItem('token')).then(result => {
+        if('token' in result){
+            localStorage.setItem('token', result.token);
+        }
+        console.log(result);
+    })
 } else {
     if(url.searchParams.has('code') && url.searchParams.has('scope')){
         let code = url.searchParams.get('code');
         getUserToken(code).then(res => {
             console.log(res)
             localStorage.setItem('token', res.token);
-            localStorage.setItem('expiration', res.expiration);
-            getUserProfile(res.token);
+            getUserProfile(res.token).then(result => {
+                console.log(result);
+            })
         })
     } else {
         getAuthorizationCode()
