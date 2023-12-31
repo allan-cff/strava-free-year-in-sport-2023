@@ -51,10 +51,14 @@ header {
     color:black;
 }
 
-#btn {
+#btn, #send {
     background-color: white;
     border-radius: 10px;
     padding : 2vw 4vw;
+}
+
+#send {
+    margin-top: 5vh;
 }
 
 progress {

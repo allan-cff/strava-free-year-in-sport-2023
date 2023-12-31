@@ -16,3 +16,7 @@ if(url.searchParams.has('access')){
 } else {
     window.location = 'login.html';
 }
+
+document.querySelector('#send').addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location).then(window.alert('Lien collé dans le presse papier !'));
+})
