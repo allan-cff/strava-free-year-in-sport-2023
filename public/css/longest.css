@@ -18,11 +18,12 @@
 }
 
 #average svg {
-    width : 10vw;
-    margin-right:5vw;
+    width : 7vw;
+    margin-right:3vw;
 }
 
 #map {
+    object-fit: cover;
     width:84vw;
     height:25vh;
     transform: rotate(3deg);
@@ -39,7 +40,3 @@
     width : 30%;
 }
 
-#name {
-    font-size:30px;
-    margin:0;
-}

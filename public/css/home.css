@@ -11,25 +11,13 @@ main {
     background-color: transparent;
 }
 
-#bad-device {
-    height:85vh;
-    position:relative;
-    z-index:1000;
-    display:none;
-    flex-direction: column;
-    color:white;
-    font-size : 40px;
-    text-align:center;
-    padding : 20vh 10vw;
-}
-
 header {
     display:flex;
 }
 
 #profil {
     margin-left : 10vw;
-    display:none;
+    display:block;
 }
 
 #profil-picture {

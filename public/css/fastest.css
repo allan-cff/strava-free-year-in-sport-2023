@@ -52,11 +52,17 @@
     flex-direction: column;
     justify-content: center;
     padding-bottom:3vh;
+    width:35%;
+}
+
+.sport-2 .activity-description {
+    padding-left : 3vw;
 }
 
 .activity-description svg {
     width: 10vw;
     height:10vw;
+    padding-bottom : 1vh;
 }
 
 .speed {
@@ -74,8 +80,8 @@
     margin-right:-5vw;
     padding-right:5vw;
     height:30vh;
-    justify-content: center;
-    gap:8vw;
+    justify-content: right;
+    gap:0;
     display:flex;
     flex-direction: row;
     color:black;
@@ -83,7 +89,7 @@
 }
 
 .average svg {
-    fill:white;
+    fill:black  !important;
     width:10vw;
     height:10vw;
 }
