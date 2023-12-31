@@ -55,6 +55,7 @@ h2 {
 #calendar>div p {
     position:relative;
     z-index:100;
+    margin:1vw;
 }
 
 .progress-bar {

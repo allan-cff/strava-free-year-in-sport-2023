@@ -14,6 +14,12 @@
 
 #average {
     display:flex;
+    align-items: center;
+}
+
+#average svg {
+    width : 10vw;
+    margin-right:5vw;
 }
 
 #map {
