@@ -17,8 +17,9 @@ function prepareRecap(token){
                 if('access' in res){
                     window.location = `/home.html?access=${res.access}`;
                 }
-                console.log(res);
             })
+        } else if(response.status === 429){
+            document.querySelector('.presentation p').innerHTML = "Désolé, nous avons atteint la limite de requêtes autorisées par Strava par créneau de 15min.<br>Vous êtes en file d'attente.<br>Nous continuerons à préparer votre récap dès que possible."
         }
     })
 }
@@ -38,6 +39,8 @@ async function getUserProfile(token){
 
 document.querySelector('#btn').addEventListener('click', () => {
     prepareRecap(localStorage.getItem('token'));
+    document.querySelector('#btn').style.display = 'none';
+    document.querySelector('.presentation p').innerHTML = 'Préparation de votre Year In Sport en cours<br>Plus que quelques secondes...'
 })
 
 let url = new URL(location.href);

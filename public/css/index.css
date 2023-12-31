@@ -54,12 +54,16 @@ header {
     align-items: center;
     justify-content: center;
     overflow:hidden;
-    z-index:10;   
+    z-index:10; 
+    color: white;
 }
 
-.presentation p {
+.presentation p{
     font-size:40px;
     margin:0;
+}
+
+#btn p {
     color:black;
 }
 
