@@ -44,7 +44,9 @@
     margin-bottom:0.25vh;
 }
 
-#sports img {
+#sports svg {
     fill : white;
     padding-right : 2vw;
+    height:2.5vh;
+    width:2.5vh;
 }
