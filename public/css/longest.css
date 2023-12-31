@@ -23,6 +23,11 @@
 }
 
 #map {
+    
+}
+
+#map img {
+    object-fit: cover;
     width:84vw;
     height:25vh;
     transform: rotate(3deg);
