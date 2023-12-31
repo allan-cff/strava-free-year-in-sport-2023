@@ -19,8 +19,26 @@ document.querySelector('#longest-activity #activity #schedules #date').innerHTML
 document.querySelector('#longest-activity #activity #schedules #hour').innerHTML = startDate.toLocaleTimeString();
 document.querySelector('#longest-activity #activity #name').innerHTML = longest.name;
 
-if('photos' in longest && longest.photos.count > 0){
+/*if('photos' in longest && longest.photos.count > 0){
     document.querySelector('#longest-activity #map').insertAdjacentHTML('beforeend', `<img src="${longest.photos.primary.urls[600]}">`)
-}
+}*/
 
-//TODO : si pas de photos trouver comment afficher la carte
+const printLat = (longest.map.latlngs[0][0] + longest.map.latlngs[longest.map.latlngs.length/2][0])/2
+const printLng = (longest.map.latlngs[0][1] + longest.map.latlngs[longest.map.latlngs.length/2][1])/2
+
+map = L.map('map').setView([printLat, printLng], 9);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+L.polyline(
+    longest.map.latlngs,
+    {
+        color: 'blue',
+        weight: 2,
+        opacity: .7,
+        lineJoin: 'round'
+    }
+).addTo(map);

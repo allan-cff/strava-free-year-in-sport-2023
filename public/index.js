@@ -63,20 +63,29 @@ async function getUserProfile(token){
         //TODO : AFFICHER PROFIL + BOUTON LISTE ATTENTE CHARGEMENT DONNEES
         return res;
     }
+    if(response.status === 401){
+        throw new Error('Bad token')
+    }
 }
 
 let url = new URL(location.href);
 if('token' in localStorage){
-    getUserProfile(localStorage.getItem('token')).then(result => {
+    getUserProfile(localStorage.getItem('token'))
+    .then(result => {
         if('token' in result){
             localStorage.setItem('token', result.token);
         }
         console.log(result);
     })
+    .catch(e => {
+        localStorage.removeItem('token');
+        getAuthorizationCode();
+    })
 } else {
     if(url.searchParams.has('code') && url.searchParams.has('scope')){
         let code = url.searchParams.get('code');
-        getUserToken(code).then(res => {
+        getUserToken(code)
+        .then(res => {
             console.log(res)
             localStorage.setItem('token', res.token);
             getUserProfile(res.token).then(result => {
