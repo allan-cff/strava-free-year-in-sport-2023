@@ -154,10 +154,6 @@ class Athlete {
             endDate = new Date(prevActivities.sort((a,b) => new Date(a.start_date) - new Date(b.start_date))[0].start_date)
         }
         let startDate = options.startDate;
-        console.log(startDate)
-        console.log(startDate.valueOf())
-        console.log(endDate)
-        console.log(endDate.valueOf())
         const response = await fetch(`https://www.strava.com/api/v3/athlete/activities?before=${endDate.valueOf()/1000}&after=${startDate.valueOf()/1000}&page=1`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
@@ -201,7 +197,7 @@ class Athlete {
                 await this.#strava_instance.database.collection(options.collection).bulkWrite(newActivities);
             }
             if(res.length === 30){
-                await this.fetchActivities({updateAll: options.updateAll, timezone:options.timezone, endDate:options.endDate}); 
+                await this.fetchActivities({collection: options.collection, updateAll: options.updateAll, timezone:options.timezone, startDate:startDate, endDate:endDate}); 
             }
         }
     }
