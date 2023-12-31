@@ -20,3 +20,7 @@ if(url.searchParams.has('access')){
 document.querySelector('#send').addEventListener('click', () => {
     navigator.clipboard.writeText(window.location).then(window.alert('Lien collé dans le presse papier !'));
 })
+
+document.querySelector('#btn').addEventListener('click', () => {
+    window.location = '/days.html'
+})
