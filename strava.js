@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 const crypto = require('node:crypto');
 const polyline = require('polyline-encoded');
 const {
-    sortByKudos,
     getMostKudoed,
     getMostKudoedPicturesActivitiesId,
     getTotals,
@@ -26,6 +25,12 @@ class Strava {
         this.#client_secret = client_secret;
         this.#client = new MongoClient(`mongodb+srv://${db_user}:${db_password}@${cluster_url}?retryWrites=true&w=majority`);
         this.database = this.#client.db("YearInSport");
+    }
+
+    async executeWaitList(){
+        for(let i=0; i<this.waitlist.length; i++){
+            await this.waitlist[i]();
+        }
     }
 
     async createAthlete(code){
@@ -166,8 +171,7 @@ class Athlete {
             //BAD TOKEN
         }
         if(response.status === 429){
-            console.log(response);
-            //WAITLIST
+            throw new Error('429')
         }
         if(response.status === 200){
             const res = await response.json();
@@ -224,8 +228,7 @@ class Athlete {
             //BAD TOKEN
         }
         if(response.status === 429){
-            console.log(response);
-            //WAITLIST
+            throw new Error('429')
         }
         if(response.status === 200){
             const res = await response.json();
@@ -264,8 +267,7 @@ class Athlete {
             //BAD TOKEN
         }
         if(response.status === 429){
-            console.log(response);
-            //WAITLIST
+            throw new Error('429')
         }
         if(response.status === 200){
             const res = await response.json();
@@ -280,35 +282,45 @@ class Athlete {
         return await cursor.toArray();
     }
 
-    async prepare(forceFetch=false, timezone=0){ // TODO : gestion waitlist
-        const prevActivities = await this.getAllActivities();
-        if(prevActivities.length === 0 || forceFetch){
-            await this.fetchActivities({updateAll: forceFetch});
-        } else {
-            await this.fetchNewActivities();
-        }
-        const activities = await this.getAllActivities();
-        const activitiesToDetail = getMostKudoedPicturesActivitiesId(activities);
-        const mostKudoed = await getMostKudoed(activities);
-        activitiesToDetail.push(mostKudoed._id)
-        const longestActivity = getBest(activities, 'all', 'distance');
-        activitiesToDetail.push(longestActivity._id)
+    async prepare(forceFetch=false, timezone=0){
+        try{
+            const prevActivities = await this.getAllActivities();
+            if(prevActivities.length === 0 || forceFetch){
+                await this.fetchActivities({updateAll: forceFetch});
+            } else {
+                await this.fetchNewActivities();
+            }
+            const activities = await this.getAllActivities();
+            const activitiesToDetail = getMostKudoedPicturesActivitiesId(activities);
+            const mostKudoed = await getMostKudoed(activities);
+            activitiesToDetail.push(mostKudoed._id)
+            const longestActivity = getBest(activities, 'all', 'distance');
+            activitiesToDetail.push(longestActivity._id)
 
-        for(const id of activitiesToDetail){
-           this.fetchDetailledActivity(id)
+            for(const id of activitiesToDetail){
+            this.fetchDetailledActivity(id)
+            }
+            const equipments2023 = getEquipments(activities);
+            const bestBike = getBestEquipment(equipments2023, 'ride');
+            const bestShoes = getBestEquipment(equipments2023, 'run');
+            if(bestBike !== null){
+                this.fetchDetailledEquipment(bestBike)
+            }
+            if(bestShoes !== null){
+                this.fetchDetailledEquipment(bestShoes)
+            }
+            this.buildStats();
+            await this.fetchActivities({collection: '2022-activities', startDate: new Date('2022-01-01 00:00:00'), endDate: new Date('2023-01-01 00:00:00')})
+            return 200;//préparation terminée
+        } catch(e) {
+            if(e.message === '429'){
+                this.#strava_instance.waitlist.push(async ()=>this.prepare())
+                return 429;
+            } else {
+                console.log(e);
+                return 401;
+            }
         }
-        const equipments2023 = getEquipments(activities);
-        const bestBike = getBestEquipment(equipments2023, 'ride');
-        const bestShoes = getBestEquipment(equipments2023, 'run');
-        if(bestBike !== null){
-            this.fetchDetailledEquipment(bestBike)
-        }
-        if(bestShoes !== null){
-            this.fetchDetailledEquipment(bestShoes)
-        }
-        this.buildStats();
-        await this.fetchActivities({collection: '2022-activities', startDate: new Date('2022-01-01 00:00:00'), endDate: new Date('2023-01-01 00:00:00')})
-        return true;//préparation terminée
     }
 
     async buildStats(){

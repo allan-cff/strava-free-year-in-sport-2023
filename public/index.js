@@ -1,39 +1,3 @@
-function getRecap(access){ // TODO : récupérer dans l'URL
-    fetch(`/stats?access=${access}`, {
-        method: 'GET'
-    }).then(response => {
-        if(response.status === 200){
-            response.json().then(res => {
-                console.log(res);
-                localStorage.setItem('recap', JSON.stringify(res));                          
-            });
-        }
-    })
-}
-
-function prepareRecap(token){
-    fetch(`/process?token=${token}`, {
-        method: 'GET'
-    }).then(response => {
-        if(response.status === 200){
-            console.log("Préparation du récap en cours");
-        }
-    })
-}
-
-function getAuthorizationCode(){
-    fetch(`/authorization?redirect_uri=${location.href}`, {
-        method: 'GET'
-    }).then(response => {
-        if(response.status === 200){
-            response.json().then(async res => {
-                console.log(res.url)
-                //TODO : AFFICHER BOUTON CONNEXION STRAVA
-            });
-        }
-    })
-}
-
 async function getUserToken(code){
     let response = await fetch(`/token?code=${code}`, {
         method: 'GET'
@@ -44,14 +8,20 @@ async function getUserToken(code){
     }
 }
 
-async function refreshUserToken(token){
-    let response = await fetch(`/refresh?token=${token}`, {
+function prepareRecap(token){
+    fetch(`/process?token=${token}`, {
         method: 'GET'
+    }).then(response => {
+        if(response.status === 200){
+            response.json().then(res => {
+                if('access' in res){
+                    window.location = `/home.html?access=${res.access}`;
+                }
+            })
+        } else if(response.status === 429){
+            document.querySelector('.presentation p').innerHTML = "Désolé, nous avons atteint la limite de requêtes autorisées par Strava par créneau de 15min.<br>Vous êtes en file d'attente.<br>Nous continuerons à préparer votre récap dès que possible."
+        }
     })
-    if(response.status === 200){
-        let res = await response.json()
-        return res;
-    }
 }
 
 async function getUserProfile(token){
@@ -60,13 +30,18 @@ async function getUserProfile(token){
     });
     if(response.status === 200){
         const res = await response.json()
-        //TODO : AFFICHER PROFIL + BOUTON LISTE ATTENTE CHARGEMENT DONNEES
         return res;
-    }
-    if(response.status === 401){
-        throw new Error('Bad token')
+    } else {
+        localStorage.removeItem('token');
+        window.location = 'login.html'
     }
 }
+
+document.querySelector('#btn').addEventListener('click', () => {
+    prepareRecap(localStorage.getItem('token'));
+    document.querySelector('#btn').style.display = 'none';
+    document.querySelector('.presentation p').innerHTML = 'Préparation de votre Year In Sport en cours<br>Plus que quelques secondes...'
+})
 
 let url = new URL(location.href);
 if('token' in localStorage){
@@ -79,7 +54,7 @@ if('token' in localStorage){
     })
     .catch(e => {
         localStorage.removeItem('token');
-        getAuthorizationCode();
+        window.location = 'login.html';
     })
 } else {
     if(url.searchParams.has('code') && url.searchParams.has('scope')){
@@ -93,6 +68,6 @@ if('token' in localStorage){
             })
         })
     } else {
-        getAuthorizationCode()
+        window.location = 'login.html';
     }
 }

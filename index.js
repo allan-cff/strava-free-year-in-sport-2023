@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('node:path');
 require('dotenv').config();
 const {Strava} = require('./strava');
+const { CronJob } = require('cron');
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,6 +13,17 @@ const router = express.Router();
 router.use(express.static(path.join(__dirname, 'public')));
 
 const strava = new Strava(process.env.ID, process.env.SECRET, process.env.DBUSER, process.env.DBPSSWRD, process.env.DBURL);
+
+const job = new CronJob(
+    '1,16,31,46 * * * *',
+    function(){
+        strava.executeWaitList();
+    },
+    null,
+    true
+);
+
+job.start();
 
 router.get('/authorization', (req, res) => {
     let redirect = req.query.redirect_uri;
@@ -47,8 +59,10 @@ router.get('/process', async (req, res) => {
     let athlete = await strava.getAthlete(token);
     if(athlete !== null){
         let result = await athlete.prepare();
-        if(result){
-            res.status(200).end();
+        if(result === 200){
+            res.status(200).json({access:athlete.link});
+        } else {
+            res.status(result).end();
         }
     } else {
         res.status(401).end();
