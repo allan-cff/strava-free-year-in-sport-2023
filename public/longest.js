@@ -23,8 +23,8 @@ document.querySelector('#longest-activity #activity #name').innerHTML = longest.
     document.querySelector('#longest-activity #map').insertAdjacentHTML('beforeend', `<img src="${longest.photos.primary.urls[600]}">`)
 }*/
 
-const printLat = (longest.map.latlngs[0][0] + longest.map.latlngs[longest.map.latlngs.length/2][0])/2
-const printLng = (longest.map.latlngs[0][1] + longest.map.latlngs[longest.map.latlngs.length/2][1])/2
+const printLat = (longest.map.latlngs[0][0] + longest.map.latlngs[Math.floor(longest.map.latlngs.length/2)][0])/2
+const printLng = (longest.map.latlngs[0][1] + longest.map.latlngs[Math.floor(longest.map.latlngs.length/2)][1])/2
 
 map = L.map('map').setView([printLat, printLng], 9);
 
