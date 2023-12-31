@@ -154,7 +154,11 @@ class Athlete {
             endDate = new Date(prevActivities.sort((a,b) => new Date(a.start_date) - new Date(b.start_date))[0].start_date)
         }
         let startDate = options.startDate;
-        const response = await fetch(`https://www.strava.com/api/v3/athlete/activities?before=${endDate/1000}&after=${startDate/1000}&page=1`, {
+        console.log(startDate)
+        console.log(startDate.valueOf())
+        console.log(endDate)
+        console.log(endDate.valueOf())
+        const response = await fetch(`https://www.strava.com/api/v3/athlete/activities?before=${endDate.valueOf()/1000}&after=${startDate.valueOf()/1000}&page=1`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             },
@@ -187,7 +191,7 @@ class Athlete {
                     newActivities.push({
                         'updateOne': {
                             'filter': {'_id': activity._id},
-                            'update': activity,
+                            'update': {'$set': activity},
                             'upsert': true
                         }
                     });
@@ -235,6 +239,13 @@ class Athlete {
         }
     }
 
+    async fetchNewActivities(collection='activities'){
+        const cursor = this.#strava_instance.database.collection(collection).find({'athleteId': this.id})
+        const prevActivities = await cursor.toArray();
+        const startDate = new Date(prevActivities.sort((a,b) => new Date(b.start_date) - new Date(a.start_date))[0].start_date)
+        await this.fetchActivities({collection: collection, startDate: startDate, endDate: new Date('2024-01-01 00:00:00'), updateAll: true})
+    }
+
     async getAllActivities(collection='activities'){
         const cursor = this.#strava_instance.database.collection(collection).find({athleteId: this.id})
         return await cursor.toArray();
@@ -273,7 +284,12 @@ class Athlete {
     }
 
     async prepare(forceFetch=false, timezone=0){ // TODO : gestion waitlist
-        await this.fetchActivities()
+        const prevActivities = await this.getAllActivities();
+        if(prevActivities.length === 0 || forceFetch){
+            await this.fetchActivities({updateAll: forceFetch});
+        } else {
+            await this.fetchNewActivities();
+        }
         const activities = await this.getAllActivities();
         const activitiesToDetail = getMostKudoedPicturesActivitiesId(activities);
         const mostKudoed = await getMostKudoed(activities);

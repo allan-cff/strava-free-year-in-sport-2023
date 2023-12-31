@@ -43,15 +43,10 @@ router.get('/profile', async (req, res) => {
 
 router.get('/process', async (req, res) => {
     //Ici on essaye de générer, si ça passe on affiche sinon on dit que c'est en file d'attente
-    let timezone = req.query.timezone;
-    let options = {};
-    if(timezone){
-        options.timezone = timezone
-    }
     let token = req.query.token;
     let athlete = await strava.getAthlete(token);
     if(athlete !== null){
-        let result = await athlete.prepare(options);
+        let result = await athlete.prepare();
         if(result){
             res.status(200).end();
         }
