@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const crypto = require('node:crypto');
+const polyline = require('polyline-encoded');
 const {
     sortByKudos,
     getMostKudoed,
@@ -339,6 +340,7 @@ class Athlete {
                 'lastname': athlete.lastname
             }
         };
+        stats.bestActivities.longest.map.latlngs = polyline.decode(stats.bestActivities.longest.map.polyline)
         this.#strava_instance.database.collection("stats").updateOne({_id: this.link},{$set: stats},{upsert: true});
         return stats;
     }
