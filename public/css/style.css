@@ -23,12 +23,12 @@ main {
 
 header {
     background-color:black;
-    height:5vh;
+    height:4vh;
     display :flex;
     justify-content: space-between;
     align-items: flex-end;
     color:white;
-    padding: 0 5vw 2vh 5vw;
+    padding: 0 5vw 0vh 5vw;
 }
 
 header img {
@@ -41,7 +41,7 @@ header p {
 }
 
 footer {
-    height:9vh;
+    height:7vh;
     display:flex;
     position:relative;
     justify-content:space-between;
@@ -69,7 +69,7 @@ footer {
 }
 
 .title{
-    height:4vh;
+    height:3vh;
     margin:0;
     position:relative;
     z-index:100;
