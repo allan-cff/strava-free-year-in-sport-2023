@@ -1,10 +1,10 @@
 #bike {
-    height : 17vh;
+    height : 18vh;
     display:flex;
 }
 
 #run {
-    height : 17vh;
+    height : 18vh;
     display:flex;
     margin-top:-2vh;
 }
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;  
-    width : 40%;
+    width : 45%;
     color:black;
 }
 
@@ -52,7 +52,7 @@
 
 .info {
     padding-left:5vw;
-    width : 55%;
+    width : 50%;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -97,8 +97,12 @@
     justify-content: center;
 }
 
+#average h2 {
+    margin-bottom:0;
+}
+
 #average-heart {
-    font-size:60px;
+    font-size:80px;
     margin:0;
 }
 
@@ -143,7 +147,7 @@
 }
 
 #activity-max {
-    font-size : 30px;
+    font-size: 40px;
     padding-left:55vw;
     padding-top:3vh;
     width : 30vw;

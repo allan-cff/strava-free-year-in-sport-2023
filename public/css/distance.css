@@ -56,7 +56,8 @@
 
 .max-month {
     height:2.5vh;
-    margin : 0.75vh 0;
+    margin : 0.75vh 0 0.75vh -2vw;
+    padding : 0 2vw;
     background-color: #FC5200;
     color:black;
     border:none;
@@ -71,9 +72,6 @@
 }
 
 .max-month .distance {
-    background-color: black;
-    border : solid 5px black;
-    color:white;
     display:flex;
 }
 

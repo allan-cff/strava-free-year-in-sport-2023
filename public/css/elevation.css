@@ -26,7 +26,7 @@
 
 
 #meters {
-    margin-top: -40vh;
+    margin-top: -42vh;
     transform: rotate(90deg);
     transform-origin: left bottom;
     display:flex;
@@ -34,7 +34,7 @@
     justify-content: space-between;
     font-size: 40px;
     height:90vw;
-    width: 15vw;
+    width: 18vw;
 }
 
 #meters p {
@@ -81,14 +81,14 @@
 
 #months {
     transform: rotate(90deg);
-    margin-left:-15vw;
+    margin-left:-18vw;
     transform-origin: left bottom;
     display:flex;
     flex-direction:column-reverse;
     justify-content: space-between;
     font-size: 40px;
     height:90vw;
-    width: 10vw;
+    width: 12vw;
     
 }
 

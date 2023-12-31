@@ -21,6 +21,7 @@
     height : 45vw;
     width:45vw;
     transform: rotate(5deg);
+    object-fit: cover;
 }
 
 #second .pictures-photo {
@@ -44,7 +45,8 @@
     padding-bottom:2vh;
 }
 
-.pictures-name {
+.pictures-name p{
     padding-bottom :5vh;
+    text-transform: none;
 }
 
