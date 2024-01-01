@@ -1,3 +1,6 @@
+new ClipboardJS('#send');
+document.querySelector('#send').setAttribute('data-clipboard-text', window.location);
+
 let url = new URL(location.href);
 if(url.searchParams.has('access')){
     fetch(`/stats?access=${url.searchParams.get('access')}`, {
@@ -17,9 +20,6 @@ if(url.searchParams.has('access')){
     window.location = 'login.html';
 }
 
-document.querySelector('#send').addEventListener('click', () => {
-    navigator.clipboard.writeText(window.location).then(window.alert('Lien collé dans le presse papier !'));
-})
 
 document.querySelector('#btn').addEventListener('click', () => {
     window.location = '/days.html'
