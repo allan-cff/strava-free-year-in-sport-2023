@@ -12,9 +12,17 @@ main {
     height: 100vh;
 }
 
+.logo {
+    padding-bottom: 5vw;
+}
+
+.logo p {
+    font-size: 160px;
+}
+
 #bienvenue {
     margin-top : 0;
-    padding:5vw;
+    padding: 0 5vw 5vw 5vw;
     font-size:40px;
     display: flex;
     flex-direction: column;
@@ -56,5 +64,5 @@ main {
 #accountAuthButton {
     visibility: hidden;
     text-align: center;
-    margin-top : 3vh;
+    margin-top : 5vw;
 }
